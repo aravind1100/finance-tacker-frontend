@@ -1,11 +1,12 @@
 // src/Pages/Home.jsx
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import { AuthContext } from "../Context/AuthContext";
 
 const Home = () => {
   const navigate = useNavigate();
-
+  const{user} = useContext(AuthContext)
   return (
     <div className="relative min-h-screen flex flex-col">
       <Navbar />
@@ -31,7 +32,7 @@ const Home = () => {
           </p>
 
           <button
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate(user ? "/dashboard" : "/login")}
             className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition shadow-lg"
           >
             Go to Dashboard
